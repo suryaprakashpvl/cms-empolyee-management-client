@@ -67,10 +67,7 @@ const [errors, setErrors] = useState({});
 
   useEffect(() => {
     fetchEmployees();
-  }, [  page,showForm,
-    debouncedSearch,
-    filters.department,
-    filters.status,]);
+  }, [page, showForm, debouncedSearch, filters.department, filters.status]);
 
 const handledeleteEmployee = async (id) => {
     try {
@@ -96,12 +93,6 @@ const handleEdit = (employee) => {
   setShowForm(true);
 };
 
-const handleAdd = () => {
-  setSelectedEmployee(null);
-  setFormData(initialFormData);
-  setErrors({});
-  setShowForm(true);
-};
 
 const handleSubmit = async (e) => {
   e.preventDefault();

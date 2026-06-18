@@ -139,7 +139,7 @@ export default function EmployeeDashboard() {
     }
   };
 
-  useEffect(() => { load(); }, [year]);
+  useEffect(() => { load(); }, []);
 
   // ── Derived KPI config (built from live API data) ──────────────────────────
   const buildKPIs = (summary) => {

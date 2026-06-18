@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import {updateEmployee} from "../services/employeeService";
+import React from "react";
 
 const EmployeeForm = ({
   selectedEmployee,
