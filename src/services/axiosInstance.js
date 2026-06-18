@@ -3,7 +3,7 @@
 import axios from "axios";
 
 const axiosInstance = axios.create({
-  baseURL: "http://localhost:2053/api",
+  baseURL: "https://cms-empolyee-management-server.onrender.com/api",
   timeout: 10000,
   headers: {
     "Content-Type": "application/json",
