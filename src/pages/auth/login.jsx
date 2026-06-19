@@ -5,7 +5,7 @@ import { showSuccess, showError } from "../../utils/toast";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
-
+const [loading, setLoading] = useState(false);
  const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -48,8 +48,7 @@ setErrors((prev) => ({
     e.preventDefault();
 
     if (!validateForm()) return;
-
-    console.log(formData);
+    setLoading(true);
 
     try {
       const data = await login(formData);
@@ -60,6 +59,9 @@ setErrors((prev) => ({
       console.error(err);
       showError("Invalid email or password");
       setErrors({ form: "Invalid email or password" });
+    }finally {
+    setLoading(false);
+
     }
   };
 
@@ -112,9 +114,20 @@ setErrors((prev) => ({
               {errors.password && <p className="error">{errors.password}</p>}
             </div>
 
-            <button className="login-btn" type="submit">
-              Sign In
-            </button>
+           <button
+  className="login-btn"
+  type="submit"
+  disabled={loading}
+>
+  {loading ? (
+    <>
+      <span className="spinner"></span>
+      Signing In...
+    </>
+  ) : (
+    "Sign In"
+  )}
+</button>
           </form>
         </div>
       </div>
