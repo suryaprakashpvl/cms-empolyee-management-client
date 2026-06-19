@@ -7,7 +7,8 @@ const EmployeeForm = ({
   setFormData,
   errors,
   handleSubmit,
-  setErrors
+  setErrors,
+    loading
 }) => {
  
 
@@ -157,14 +158,24 @@ const EmployeeForm = ({
               Cancel
             </button>
 
-            <button
-              type="submit"
-              className="save-btn"
-            >
-              {selectedEmployee
-                ? "Update Employee"
-                : "Save Employee"}
-            </button>
+          <button
+  type="submit"
+  className="save-btn"
+  disabled={loading}
+>
+  {loading ? (
+    <>
+      <span className="spinner"></span>
+      {selectedEmployee
+        ? "Updating..."
+        : "Saving..."}
+    </>
+  ) : (
+    selectedEmployee
+      ? "Update Employee"
+      : "Save Employee"
+  )}
+</button>
           </div>
         </form>
       </div>

@@ -2,6 +2,7 @@ const DeleteConfirmationModal = ({
   isOpen,
   onClose,
   onConfirm,
+  loading
 }) => {
   if (!isOpen) return null;
 
@@ -38,6 +39,8 @@ const DeleteConfirmationModal = ({
           >
             Delete Employee
           </button>
+
+          
         </div>
       </div>
     </div>

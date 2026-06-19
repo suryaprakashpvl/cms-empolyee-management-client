@@ -115,7 +115,7 @@ setErrors((prev) => ({
             </div>
 
            <button
-  className="login-btn"
+  className="save-btn"
   type="submit"
   disabled={loading}
 >

@@ -36,7 +36,7 @@ const [employeeToDelete, setEmployeeToDelete] =
 
 const [formData, setFormData] =
   useState(initialFormData);
-
+const [loading, setLoading] = useState(false);
 const [errors, setErrors] = useState({});
 
   const [filters, setFilters] = useState({
@@ -71,12 +71,15 @@ const [errors, setErrors] = useState({});
 
 const handledeleteEmployee = async (id) => {
     try {
+      setLoading(true);
       await deleteEmployee(id);
       showSuccess("Employee deleted successfully");
       fetchEmployees();
     } catch (error) {
       console.error(error);
       showError(error.response?.data?.message || "Failed to delete employee");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -100,6 +103,7 @@ const handleSubmit = async (e) => {
   if (!validateForm()) {
     return;
   }
+    setLoading(true);
 
   try {
     if (selectedEmployee) {
@@ -120,6 +124,8 @@ showSuccess(`Employee ${
   } catch (error) {
     console.error(error);
     showError(error.response?.data?.message || "Failed to submit form");
+  } finally {
+    setLoading(false);
   }
 };
 
@@ -242,6 +248,7 @@ const validateForm = () => {
   selectedEmployee={selectedEmployee}
   setShowForm={setShowForm}
   setErrors={setErrors}
+  loading={loading}
 />
       )}
 
@@ -252,6 +259,7 @@ const validateForm = () => {
           handledeleteEmployee(employeeToDelete);
           setDeleteModal(false);
         }}
+        loading={loading}
       />
     </div>
       </>
